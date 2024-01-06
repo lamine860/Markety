@@ -8,8 +8,8 @@ A shopping website created using flask
 
 ```
 python -m venv .venv
-source .venv/bin/active  // Linux
-.venv/Scrpts/active.bat  // Windows
+source .venv/bin/activate  // Linux
+.venv/Scripts/activate.bat  // Windows
 
 ```
 
