@@ -1,19 +1,20 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String
+from sqlalchemy import Integer, String, Column, Boolean
+from markety.database import Base
+from flask_login import UserMixin
 
 
-class Base(DeclarativeBase):
-    pass
+class User(UserMixin, Base):
+    __tablename__ = 'users'
 
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), unique=True)
+    email = Column(String(120), unique=True)
+    password = Column(String)
 
-db = SQLAlchemy(model_class=Base)
+    def __init__(self, name=None, email=None, password=None):
+        self.name = name
+        self.email = email
+        self.password = password
 
-
-class User(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String)
-    email: Mapped[str] = mapped_column(String)
-    password: Mapped[str] = mapped_column(String)
-
-
+    def __repr__(self):
+        return f'<User {self.name!r}>'

@@ -1,3 +1,40 @@
-{% extends 'layouts/base.html' %} {% block content %}
-<h1>Login page</h1>
+{% extends 'layouts/guest.html' %} {% block content %}
+<div class="p-6 m-auto w-96 bg-white rounded-lg shadow-lg">
+  <h1 class="text-xl font-semibold mb-6">Login</h1>
+  <form action="" method="POST">
+    {{form.csrf_token}}
+    <div class="mb-4">
+      <label for="email">E-mail</label>
+      <input
+        type="text"
+        name="email"
+        value="{{form.data.get('email') or ''}}"
+        id="email"
+        placeholder="jhone@domain.com"
+        class="w-full rounded-md border-slate-300 placeholder-slate-400 placeholder-opacity-50 mt-1"
+      />
+      {% if form.errors.email %}
+      <small class="text-red-400">{{form.errors.email[0] }}</small>
+      {% endif %}
+    </div>
+    <div class="mb-4">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="w-full rounded-md border-slate-300 mt-1"
+      />
+      {% if form.errors.password %}
+      <small class="text-red-400">{{form.errors.password[0] }}</small>
+      {% endif %}
+    </div>
+    <button
+      type="submit"
+      class="px-6 py-2 text-slate-100 bg-blue-500 rounded-sm uppercase"
+    >
+      Submit
+    </button>
+  </form>
+</div>
 {% endblock %}

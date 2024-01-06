@@ -5,11 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markety</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     {% block head %} {% endblock %}
   </head>
-  <body>
-    {% block content %} {% endblock %}
-
+  <body class="bg-slate-100 text-slate-600 h-screen w-full">
+    <header class="border-b bg-white">
+      <div class="max-w-screen-lg m-auto">
+        <div class="flex justify-between items-center">
+          <a href="/" class="text-blue-600 text-2xl font-bold">Markety</a>
+          <nav class="flex items-center">
+            {% if current_user.is_authenticated %}
+            <div
+              href="{{url_for('auth.register')}}"
+              class="relative inline-block px-3 py-4 group"
+            >
+              <button
+                class="w-10 h-10 flex items-center justify-center text-white text-xl font-bold rounded-full bg-slate-600"
+              >
+                {{ current_user.name[0:1]}}
+              </button>
+              <div class="hidden group-hover:flex absolute top-[70px] bg-white shadow-md w-32 flex flex-col rounded-b overflow-hidden divide-y">
+                <a href="" class="p-2 hover:bg-blue-500 hover:text-white tarnsition">Profile</a>
+                <form
+                  action="{{url_for('auth.logout')}}"
+                  method="POST"
+                  class="inline-block p-2 hover:bg-blue-500 hover:text-white tarnsition"
+                >
+                  <button type="submit">Logout</button>
+                </form>
+              </div>
+            </div>
+            {% else %}
+            <a
+              href="{{url_for('auth.register')}}"
+              class="inline-block px-3 py-4 hover:border-b hover:border-blue-500 transition"
+              >Register</a
+            >
+            <a
+              href="{{url_for('auth.login')}}"
+              class="inline-block px-3 py-4 hover:border-b hover:border-blue-500 transition"
+            >
+              Login
+            </a>
+            {% endif %}
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-screen-lg m-auto">
+      {% block content %} {% endblock %}
+    </main>
     {% block scripts %} {% endblock %}
   </body>
 </html>
