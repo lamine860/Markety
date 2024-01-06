@@ -24,14 +24,14 @@
               >
                 {{ current_user.name[0:1]}}
               </button>
-              <div class="hidden group-hover:flex absolute top-[70px] bg-white shadow-md w-32 flex flex-col rounded-b overflow-hidden divide-y">
+              <div class="hidden group-hover:flex absolute text-sm top-[70px] bg-white shadow-md w-32 flex flex-col rounded-b overflow-hidden divide-y">
                 <a href="" class="p-2 hover:bg-blue-500 hover:text-white tarnsition">Profile</a>
                 <form
                   action="{{url_for('auth.logout')}}"
                   method="POST"
                   class="inline-block p-2 hover:bg-blue-500 hover:text-white tarnsition"
                 >
-                  <button type="submit">Logout</button>
+                  <button type="submit" class="text-sm">Logout</button>
                 </form>
               </div>
             </div>
