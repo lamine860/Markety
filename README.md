@@ -4,12 +4,12 @@ A shopping website created using flask
 
 #### Instalation instructions
 
-01 Create project directory and create virtual environment
+01 Create project directory and create and activate virtual environment
 
 ```
 python -m venv .venv
-source .venv/bin/active <!-- Linux -->
-.venv/Scrpts/active.bat <!-- Window -->
+source .venv/bin/active  // Linux
+.venv/Scrpts/active.bat  // Windows
 
 ```
 
